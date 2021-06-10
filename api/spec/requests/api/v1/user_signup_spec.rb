@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'RegistrationAPI' do
+describe 'User SignUp API' do
   context '正常: ' do
     context 'パラメータが正しい場合' do
       before do
