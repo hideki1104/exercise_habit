@@ -48,6 +48,11 @@ RSpec.describe "Api::V1::Auth::Sessions", type: :request do
       it 'レスポンスが401で返却されること' do
         expect(response.status).to eq(401)
       end
+
+      it 'レスポンスステータスがfalseで返却されること' do
+        response_data = JSON.parse(response.body)
+        expect(response_data["success"]).to eq(false)
+      end
     end
   end
 end
