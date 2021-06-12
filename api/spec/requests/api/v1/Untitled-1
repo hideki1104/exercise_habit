@@ -1,1 +1,0 @@
-curl localhost:3000/api/v1/user/auth/sign_in -X POST -d '{"email":"test1@example.com", "password":"password"}' -H "content-type:application/json" -i
