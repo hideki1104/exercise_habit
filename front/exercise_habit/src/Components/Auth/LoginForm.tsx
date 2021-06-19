@@ -64,13 +64,17 @@ export const LoginForm: React.FC<LoginFormProps> = ({ connectLoginApi, errorMess
     connectLoginApi(requestData);
   }
 
+  const handleGuestSubmit = (): void => {
+    connectLoginApi({email: "test@example.com", password: "example"});
+  }
+
   return (
     <Card className={classes.root}>
       <Typography className={classes.title} color="textSecondary" gutterBottom>
         ログイン
       </Typography>
       <CardContent>
-        <form className={classes.root} onSubmit={handleSubmit(handleOnSubmit)}>
+        <form onSubmit={handleSubmit(handleOnSubmit)}>
           <span className={classes.errorMessage}>{errorMessage}</span><br/>
           <TextField className={classes.authForm} id="email" label="メールアドレス" variant="outlined" type="email" {...register("email", { required: true,
           pattern: {
@@ -87,9 +91,9 @@ export const LoginForm: React.FC<LoginFormProps> = ({ connectLoginApi, errorMess
             {errors.password && errors.password.type === "minLength" && "パスワードは6文字以上で入力してください"}
           </span><br/>
           <Button className={classes.authButton} id="login_button" variant="contained" type="submit">ログイン</Button><br/>
-          <Button className={classes.authButton} id="guest_login_button" variant="contained" color="primary">ゲストログイン</Button>
-          <p className={classes.repletion}>新規登録の方は<Link to="/sign_up">こちら</Link></p>
         </form>
+        <Button className={classes.authButton} id="guest_login_button" variant="contained" color="primary" onClick={handleGuestSubmit}>ゲストログイン</Button>
+        <p className={classes.repletion}>新規登録の方は<Link to="/sign_up">こちら</Link></p>
       </CardContent>
     </Card>
   );
