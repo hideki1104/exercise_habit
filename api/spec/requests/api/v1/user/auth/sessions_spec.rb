@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Api::V1::Auth::Sessions", type: :request do
+RSpec.describe "Api::V1::User::Auth::Sessions", type: :request do
   describe "ユーザーログイン機能" do
     context '正常:' do
       context 'メールアドレス、パスワードが正しい場合' do
