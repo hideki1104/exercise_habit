@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
-  mount_devise_token_auth_for 'User', at: 'user/auth'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  namespace :api do
+    scope :v1 do
+      mount_devise_token_auth_for 'User', at: 'user/auth/', controllers: {
+          registrations: 'api/v1/user/auth/registrations',
+          sessions: 'api/v1/user/auth/sessions'
+      }
+      mount_devise_token_auth_for 'Admin', at: 'admin/auth/', controllers: {
+        sessions: 'api/v1/admin/auth/sessions'
+      }
+    end
+  end
 end
