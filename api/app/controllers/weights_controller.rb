@@ -1,5 +1,4 @@
 class WeightsController < ApplicationController
-  before_action :authenticate_user!
   def create
     @weight = Weight.new(weight_params)
     if @weight.save
