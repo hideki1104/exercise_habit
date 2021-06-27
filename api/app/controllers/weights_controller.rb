@@ -1,10 +1,11 @@
 class WeightsController < ApplicationController
+  before_action :authenticate_user!
   def create
-    @user = User.new(weight_params)
-    if @user.save
-      render json: @user
+    @weight = Weight.new(weight_params)
+    if @weight.save
+      render json: @weight
     else
-      render json: @user.errors
+      render json: @weight.errors
     end
   end
 
