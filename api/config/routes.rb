@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       mount_devise_token_auth_for 'Admin', at: 'admin/auth/', controllers: {
         sessions: 'api/v1/admin/auth/sessions'
       }
-      resource :users, :only => [:update], module: 'v1/user'
     end
   end
+  resources :users, only: [:update]
 end
