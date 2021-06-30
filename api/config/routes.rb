@@ -10,6 +10,6 @@ Rails.application.routes.draw do
       }
     end
   end
-  resources :users, only: [:update]
-  resources :weights, only: [:create]
+  resources :users, only: [:show, :update]
+  resources :weights, only: [:create, :show]
 end
