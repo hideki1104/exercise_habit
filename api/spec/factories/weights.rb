@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :weight do
-    weight { 1.5 }
-    user_id { "" }
+    weight { 60 }
+    user_id { 1 }
   end
 end
