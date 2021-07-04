@@ -15,8 +15,7 @@ class WeightsController < ApplicationController
   end
 
   def update
-    user_id = current_api_user.id
-    @weight = Weight.find(user_id)
+    @weight = Weight.find(params[:id])
     if @weight.update(weight_params)
       render json: @weight
     else
