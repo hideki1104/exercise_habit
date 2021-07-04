@@ -5,7 +5,7 @@ RSpec.describe User, type: :model do
     @user = build(:user)
   end
 
-  it '名前、メールアドレス、パスワードがある場合、有効である' do
+  it '名前、メールアドレス、パスワード、身長、性別、生年月日、トレーニングタイプがある場合、有効である' do
 
     expect(@user).to be_valid
   end
@@ -34,5 +34,29 @@ RSpec.describe User, type: :model do
     @user.password = nil
     @user.valid?
     expect(@user.errors[:password]).to include("can't be blank")
+  end
+
+  it '身長が数値でない場合、無効である' do
+    @user.height = "test"
+    @user.valid?
+    expect(@user.errors[:height]).to include("is not a number")
+  end
+
+  it '性別が数値でない場合、無効である' do
+    @user.sex = "test"
+    @user.valid?
+    expect(@user.errors[:sex]).to include("is not a number")
+  end
+
+  it '生年月日が正しい形式でない場合、無効である' do
+    @user.birthday = "199001"
+    @user.valid?
+    expect(@user.valid?).to eq(false)
+  end
+
+  it 'トレーニングタイプが数値でない場合、無効である' do
+    @user.training_type = "test"
+    @user.valid?
+    expect(@user.errors[:training_type]).to include("is not a number")
   end
 end
