@@ -48,12 +48,6 @@ RSpec.describe User, type: :model do
     expect(@user.errors[:sex]).to include("is not a number")
   end
 
-  it '生年月日が正しい形式でない場合、無効である' do
-    @user.birthday = "199001"
-    @user.valid?
-    expect(@user.valid?).to eq(false)
-  end
-
   it 'トレーニングタイプが数値でない場合、無効である' do
     @user.training_type = "test"
     @user.valid?

@@ -6,10 +6,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
-  validates :height, numericality: true
-  validates :sex, numericality: true
-  validates :training_type, numericality: true
-  VALID_DATE_REGIX = /\A\d{4}-\d{2}-\d{2}\z/
-  validates :birthday, format: { with: VALID_DATE_REGIX }
+  validates :height, {numericality: true, allow_nil: true}
+  validates :sex, {numericality: true, allow_nil: true}
+  validates :training_type, {numericality: true, allow_nil: true}
   has_many :weights
 end
