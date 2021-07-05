@@ -6,7 +6,6 @@ RSpec.describe User, type: :model do
   end
 
   it '名前、メールアドレス、パスワード、身長、性別、生年月日、トレーニングタイプがある場合、有効である' do
-
     expect(@user).to be_valid
   end
 
