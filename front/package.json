@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "@material-ui/core": "^4.12.1",
+    "@material-ui/icons": "^4.11.2",
+    "@types/react-router-dom": "^5.1.8",
+    "axios": "^0.21.1",
+    "react-hook-form": "^7.10.1",
+    "react-router-dom": "^5.2.0"
+  },
+  "devDependencies": {
+    "chart.js": "^3.4.1",
+    "react-chartjs-2": "^3.0.3"
+  }
+}
