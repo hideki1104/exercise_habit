@@ -6,4 +6,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
+  validates :height, {numericality: true, allow_nil: true}
+  validates :sex, {numericality: true, allow_nil: true}
+  validates :training_type, {numericality: true, allow_nil: true}
+  has_many :weights
 end

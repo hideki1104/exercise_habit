@@ -5,21 +5,23 @@ import { Footer } from './Footer';
 import { Home } from './Home';
 import { Registration } from './Auth/Registration';
 import { Login } from './Auth/Login';
+import { Top } from './User/Top';
 import { Detail } from './User/Detail';
+import { UserEdit } from './User/UserEdit';
 
 interface UserMainProps {
 
 }
 
 export const UserMain: React.FC<UserMainProps> = () => {
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin]   = useState(false);
+  const [isSignUp, setIsSignUp] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("headers") != null) {
       setIsLogin(true)
     }
   })
-  console.log(isLogin);
 
   type ResponseHeader = {
     'access-token': string
@@ -29,15 +31,29 @@ export const UserMain: React.FC<UserMainProps> = () => {
     'uid': string
   }
 
-  const handleLogin = (userName: string, responseHeader:ResponseHeader):void => {
+  type UserData = {
+    allow_password_change: boolean
+    email: string
+    id: number
+    image: string | null
+    name: string
+    nickname: string | null
+    provider: string
+    uid: string
+  }
+
+  const handleLogin = (userData:UserData, responseHeader:ResponseHeader, isSignUp:boolean = false):void => {
     localStorage.setItem("headers", JSON.stringify(responseHeader));
-    localStorage.setItem("userName", userName);
+    localStorage.setItem("userData", JSON.stringify(userData));
     setIsLogin(true);
+    if (isSignUp) {
+      setIsSignUp(true);
+    }
   }
 
   const handleLogout = () => {
-    localStorage.clear();
     setIsLogin(false);
+    localStorage.clear();
   }
 
   return(
@@ -64,9 +80,21 @@ export const UserMain: React.FC<UserMainProps> = () => {
             )}
           />
           <Route
+            exact path={"/user/top"}
+            render={props => (
+              <Top isSignUp={isSignUp}/>
+            )}
+          />
+          <Route
             exact path={"/user/:id"}
             render={props => (
               <Detail/>
+            )}
+          />
+          <Route
+            exact path={"/user/edit/:id"}
+            render={props => (
+              <UserEdit/>
             )}
           />
         </Switch>
