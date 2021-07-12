@@ -9,6 +9,11 @@ class WeightsController < ApplicationController
     end
   end
 
+  def index
+    @weights = current_api_user.weights
+    render json: @weights
+  end
+
   def show
     @weight = current_api_user.weights.order(updated_at: :desc).limit(1)
     render json: @weight
@@ -24,6 +29,6 @@ class WeightsController < ApplicationController
   end
 
   def weight_params
-    params.permit(:weight)
+    params.permit(:weight, :user_id)
   end
 end
