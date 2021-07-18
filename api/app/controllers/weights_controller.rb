@@ -19,6 +19,16 @@ class WeightsController < ApplicationController
     render json: @weight
   end
 
+  def edit
+    select_month      = params[:id]
+    select_month_text = select_month.insert(4, "-")
+    start_date_text   = select_month_text.insert(7, "-01")
+    start_date        = Date.parse(start_date_text)
+    end_date          = start_date.end_of_month
+    @weights = current_api_user.weights.where("created_at >= ?", start_date).where("created_at <= ?", end_date)
+    render json: @weights
+  end
+
   def update
     @weight = Weight.find(params[:id])
     if @weight.update(weight_params)
