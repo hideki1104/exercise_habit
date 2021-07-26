@@ -1,12 +1,15 @@
 class WeightsController < ApplicationController
 
   def create
-    @weight = Weight.new(weight_params)
-    if @weight.save
-      render json: @weight
-    else
-      render json: @weight.errors
+    weight = current_api_user.weights.find_or_initialize_by(created_at: "2021-07-22")
+
+    if weight.new_record?
+      weight.weight  = weight_params['weight']
+      weight.user_id = current_api_user.id
+      render json: weight.save
     end
+
+    render json: weight.update(weight_params)
   end
 
   def index
