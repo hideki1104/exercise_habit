@@ -11,5 +11,5 @@ Rails.application.routes.draw do
     end
   end
   resources :users, only: [:show, :update]
-  resources :weights, only: [:create, :show, :update]
+  resources :weights, only: [:create, :index, :show, :edit, :update]
 end
