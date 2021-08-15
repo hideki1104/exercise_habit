@@ -13,6 +13,20 @@ class GenresController < ApplicationController
     render json:genres
   end
 
+  def update
+    genre = Genre.find(params[:id])
+    if genre.update(training_params)
+      render json: genre
+    else
+      render json: genre.errors
+    end
+  end
+
+  def destroy
+    render json: Genre.find(params[:id]).destroy
+  end
+
+  private
   def training_params
     params.permit(:name)
   end
