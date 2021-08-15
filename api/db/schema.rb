@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_27_035018) do
+ActiveRecord::Schema.define(version: 2021_08_15_012028) do
 
   create_table "admins", charset: "utf8mb4", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -35,6 +35,22 @@ ActiveRecord::Schema.define(version: 2021_06_27_035018) do
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_admins_on_uid_and_provider", unique: true
+  end
+
+  create_table "genres", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name", limit: 50
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "trainings", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.string "url"
+    t.integer "training_type", limit: 1
+    t.bigint "genre_id"
+    t.integer "difficuly_type", limit: 1
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
