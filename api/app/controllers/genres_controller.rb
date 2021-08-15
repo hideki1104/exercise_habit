@@ -8,6 +8,11 @@ class GenresController < ApplicationController
     end
   end
 
+  def index
+    genres = Genre.all
+    render json:genres
+  end
+
   def training_params
     params.permit(:name)
   end
