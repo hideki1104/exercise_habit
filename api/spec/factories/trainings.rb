@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :training do
-    name { "MyString" }
-    url { "MyString" }
-    training_type { "" }
-    genre_id { "" }
-    difficuly_type { "" }
+    sequence(:name) { |n| "test_#{n}" }
+    url { "abcdefghij" }
+    training_type { 0 }
+    genre_id { 1 }
+    difficuly_type { 0 }
   end
 end
