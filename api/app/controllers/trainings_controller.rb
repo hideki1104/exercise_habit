@@ -1,5 +1,20 @@
 class TrainingsController < ApplicationController
   def create
+    training = Training.new(training_params)
+    if training.save
+      render json: training
+    else
+      render json: training.errors
+    end
+  end
+
+  def index
+  end
+
+  def update
+  end
+
+  def destroy
   end
 
   private
