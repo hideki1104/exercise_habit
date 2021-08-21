@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_15_012028) do
+ActiveRecord::Schema.define(version: 2021_08_21_074041) do
 
   create_table "admins", charset: "utf8mb4", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2021_08_15_012028) do
     t.integer "difficuly_type", limit: 1
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "thumbnail_id"
   end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
