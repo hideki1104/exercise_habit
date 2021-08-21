@@ -9,6 +9,8 @@ class TrainingsController < ApplicationController
   end
 
   def index
+    trainings = Training.all
+    render json: trainings
   end
 
   def update
