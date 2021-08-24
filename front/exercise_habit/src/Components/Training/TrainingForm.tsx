@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     trainingForm: {
       width: 300,
+      marginTop: 30,
     },
     errorMessage: {
       height: 10,
@@ -61,7 +62,7 @@ const useStyles = makeStyles((theme: Theme) =>
     url: {
       fontSize: 14,
       marginTop: 30,
-    }
+    },
   }),
 );
 
@@ -106,6 +107,7 @@ export const TrainingForm: React.FC<TrainingFormProps> = () => {
     training_type: number
     difficuly_type: number
     genre_id: number
+    description: string
   }
 
   type GenreData = {
@@ -127,6 +129,7 @@ export const TrainingForm: React.FC<TrainingFormProps> = () => {
   }, [])
 
   const handleOnSubmit: SubmitHandler<TrainingData> = async (requestData: TrainingData) => {
+    console.log(requestData);
     const responseData = await connectPost("http://localhost:3000/trainings", requestData);
     console.log(responseData)
     // エラーの場合
@@ -153,7 +156,6 @@ export const TrainingForm: React.FC<TrainingFormProps> = () => {
                 <span className={classes.errorMessage}>
                   {errors.name && errors.name.type === "required" && "トレーニング名を入力してください"}
                 </span><br/>
-                <span className={classes.url}>https://www.youtube.com/watch?v=</span><br/>
 
                 <TextField className={classes.trainingForm} id="url" label="URL(下11桁)" variant="outlined" type="text" {...register("url", { required: true })}/><br/>
                 <span className={classes.errorMessage}>
@@ -221,10 +223,23 @@ export const TrainingForm: React.FC<TrainingFormProps> = () => {
                     ))}
                   </Select>
                 </FormControl><br/>
-
                 <span className={classes.errorMessage}>
                   {errors.difficuly_type && errors.difficuly_type.type === "required" && "難易度を選択してください"}
                 </span><br/>
+
+                <TextField
+                  id="description"
+                  className={classes.trainingForm}
+                  label="トレーニング説明"
+                  multiline
+                  rows={6}
+                  variant="outlined"
+                  {...register("description", { required: true })}
+                /><br/>
+                <span className={classes.errorMessage}>
+                  {errors.description && errors.description.type === "required" && "トレーニング説明を入力してください"}
+                </span><br/>
+
                 <Button className={classes.registrationButton} variant="contained" type="submit">登録</Button>
               </form>
             </CardContent>

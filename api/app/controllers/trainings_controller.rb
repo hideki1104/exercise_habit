@@ -13,14 +13,21 @@ class TrainingsController < ApplicationController
     render json: trainings
   end
 
+  def show
+    training = Training.find(params[:id])
+    render json: training
+  end
+
   def update
   end
 
   def destroy
+    training = Training.find(params[:id])
+    render json: training.destroy
   end
 
   private
   def training_params
-    params.permit(:name, :url, :training_type, :difficuly_type, :genre_id, :thumbnail_id)
+    params.permit(:name, :url, :training_type, :difficuly_type, :genre_id, :thumbnail_id, :descrription)
   end
 end
