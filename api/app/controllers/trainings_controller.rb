@@ -19,6 +19,12 @@ class TrainingsController < ApplicationController
   end
 
   def update
+    training = Training.find(params[:id])
+    if training.update(training_params)
+      render json: training
+    else
+      render json: training.errors
+    end
   end
 
   def destroy
