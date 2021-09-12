@@ -10,6 +10,8 @@ class HistoriesController < ApplicationController
   end
 
   def index
+    histories = current_api_user.histories
+    render json: histories
   end
 
   private

@@ -6,4 +6,5 @@ class Training < ApplicationRecord
   validates :genre_id, {presence: true, numericality: true}
   belongs_to :genre
   has_many :users
+  has_many :histories
 end

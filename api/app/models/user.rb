@@ -11,4 +11,5 @@ class User < ActiveRecord::Base
   validates :training_type, {numericality: true, allow_nil: true}
   has_many :weights
   has_many :trainings
+  has_many :histories
 end
