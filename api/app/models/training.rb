@@ -7,4 +7,5 @@ class Training < ApplicationRecord
   belongs_to :genre
   has_many :users
   has_many :histories
+  has_many :users, through: :histories
 end

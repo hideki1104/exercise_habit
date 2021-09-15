@@ -12,4 +12,5 @@ class User < ActiveRecord::Base
   has_many :weights
   has_many :trainings
   has_many :histories
+  has_many :trainings, through: :histories
 end
