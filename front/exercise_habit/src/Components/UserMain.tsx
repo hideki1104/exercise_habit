@@ -10,8 +10,9 @@ import { Detail } from './User/Detail';
 import { UserEdit } from './User/UserEdit';
 import { WeightManagement } from './Weight/WeightManagement';
 import { WeightRegistration } from './Weight/WeightRegistration';
-import { Index } from './SocialNetwork/index';
+import { SocialNetworkIndex } from './pages/user/SocialNetworkIndex';
 import { TrainingIndex } from './pages/user/TrainingIndex';
+import { TrainingHistory } from './pages/user/TrainingHistory';
 
 interface UserMainProps {
 
@@ -116,13 +117,19 @@ export const UserMain: React.FC<UserMainProps> = () => {
           <Route
             exact path={"/social_field"}
             render={props => (
-              <Index/>
+              <SocialNetworkIndex/>
             )}
           />
           <Route
             exact path={"/trainings"}
             render={props => (
               <TrainingIndex/>
+            )}
+          />
+          <Route
+            exact path={"/historys"}
+            render={props => (
+              <TrainingHistory/>
             )}
           />
         </Switch>

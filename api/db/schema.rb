@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_22_070626) do
+ActiveRecord::Schema.define(version: 2021_09_09_121749) do
 
   create_table "admins", charset: "utf8mb4", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -39,6 +39,14 @@ ActiveRecord::Schema.define(version: 2021_08_22_070626) do
 
   create_table "genres", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", limit: 50
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "histories", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "training_id"
+    t.integer "set_count"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
