@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_09_121749) do
+ActiveRecord::Schema.define(version: 2021_09_20_003046) do
 
   create_table "admins", charset: "utf8mb4", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -47,6 +47,13 @@ ActiveRecord::Schema.define(version: 2021_09_09_121749) do
     t.bigint "user_id"
     t.bigint "training_id"
     t.integer "set_count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "posts", charset: "utf8mb4", force: :cascade do |t|
+    t.string "text"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
