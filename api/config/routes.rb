@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   resources :genres, only: [:create, :index, :update, :destroy]
   resources :trainings, only: [:create, :index, :show, :update, :destroy]
   resources :histories, only: [:create, :index]
+  resources :posts, only: [:create, :index]
 end
