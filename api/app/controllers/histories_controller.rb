@@ -11,7 +11,7 @@ class HistoriesController < ApplicationController
   end
 
   def index
-    histories = User.joins(:trainings).select("trainings.name, trainings.url, trainings.thumbnail_id, histories.id, histories.set_count, histories.created_at").where(id: current_api_user.id)
+    histories = User.joins(:history_trainings).select("trainings.name, trainings.url, trainings.thumbnail_id, histories.id, histories.set_count, histories.created_at").where(id: current_api_user.id)
     render json: histories
   end
 
