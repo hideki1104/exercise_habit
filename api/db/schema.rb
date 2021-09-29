@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_21_123314) do
+ActiveRecord::Schema.define(version: 2021_09_29_124219) do
 
   create_table "admins", charset: "utf8mb4", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -37,6 +37,14 @@ ActiveRecord::Schema.define(version: 2021_09_21_123314) do
     t.index ["uid", "provider"], name: "index_admins_on_uid_and_provider", unique: true
   end
 
+  create_table "comments", charset: "utf8mb4", force: :cascade do |t|
+    t.string "text"
+    t.bigint "user_id"
+    t.bigint "post_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "genres", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", limit: 50
     t.datetime "created_at", precision: 6, null: false
@@ -49,6 +57,15 @@ ActiveRecord::Schema.define(version: 2021_09_21_123314) do
     t.integer "set_count"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "likes", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "user_id_id"
+    t.bigint "post_id_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id_id"], name: "index_likes_on_post_id_id"
+    t.index ["user_id_id"], name: "index_likes_on_user_id_id"
   end
 
   create_table "posts", charset: "utf8mb4", force: :cascade do |t|
