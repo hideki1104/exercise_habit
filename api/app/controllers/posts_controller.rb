@@ -10,7 +10,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    posts = User.joins(:post_trainings).select("posts.id, posts.text, posts.created_at, users.name as user_name, trainings.name as training_name, trainings.url, trainings.thumbnail_id").where(id: current_api_user.id).order("posts.created_at DESC")
+    posts = User.joins(:post_trainings).select("posts.id, posts.text, posts.created_at, users.name as user_name, users.id as user_id, trainings.name as training_name, trainings.url, trainings.thumbnail_id").where(id: current_api_user.id).order("posts.created_at DESC")
 
     render json: posts
   end

@@ -15,4 +15,7 @@ class User < ActiveRecord::Base
   has_many :history_trainings, through: :histories, source: :training
   has_many :posts
   has_many :post_trainings, through: :posts, source: :training
+  has_many :likes
+  has_many :comments
+  has_many :comment_posts, through: :comments, source: :post
 end
