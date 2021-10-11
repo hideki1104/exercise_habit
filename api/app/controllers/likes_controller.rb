@@ -8,6 +8,13 @@ class LikesController < ApplicationController
     end
   end
 
+  def destroy
+    path    = request.fullpath.split("/")
+    post_id = path[-3]
+    user_id = path[-1]
+    render json: Like.find_by(post_id: post_id, user_id: user_id).destroy
+  end
+
   private
   def like_params
     params.permit(:post_id, :user_id)
