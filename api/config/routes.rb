@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :trainings, only: [:create, :index, :show, :update, :destroy]
   resources :histories, only: [:create, :index]
   resources :posts, only: [:create, :index] do
-    resources :likes, only: [:create, :destroy]
+    resources :likes, only: [:create, :show, :destroy]
     resources :comments, only: [:create, :index]
   end
 end
