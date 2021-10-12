@@ -10,7 +10,11 @@ Rails.application.routes.draw do
       }
     end
   end
-  resources :users, only: [:show, :update]
+  resources :users, only: [:show, :update] do
+    resource :relationships, only: [:create, :destroy]
+    get 'followings' => 'relationships#followings', as: 'followings'
+    get 'followers' => 'relationships#followers', as: 'followers'
+  end
   resources :weights, only: [:create, :index, :show, :edit, :update]
   resources :genres, only: [:create, :index, :update, :destroy]
   resources :trainings, only: [:create, :index, :show, :update, :destroy]
