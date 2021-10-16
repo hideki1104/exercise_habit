@@ -5,14 +5,14 @@ import { Footer } from './Footer';
 import { Home } from './Home';
 import { Registration } from './Auth/Registration';
 import { Login } from './Auth/Login';
-import { Top } from './User/Top';
-import { Detail } from './User/Detail';
-import { UserEdit } from './User/UserEdit';
-import { WeightManagement } from './Weight/WeightManagement';
-import { WeightRegistration } from './Weight/WeightRegistration';
-import { SocialNetworkIndex } from './pages/user/SocialNetworkIndex';
+import { MyPageEdit } from './pages/user/MyPageEdit';
+import { PostIndex } from './pages/user/PostIndex';
 import { TrainingIndex } from './pages/user/TrainingIndex';
 import { TrainingHistory } from './pages/user/TrainingHistory';
+import { UserTop } from './pages/user/UserTop';
+import { MyPage } from './pages/user/MyPage';
+import { WeightIndex } from './pages/user/WeightIndex';
+import { WeightNew } from './pages/user/WeightNew';
 
 interface UserMainProps {
 
@@ -87,37 +87,37 @@ export const UserMain: React.FC<UserMainProps> = () => {
           <Route
             exact path={"/user/top"}
             render={props => (
-              <Top isSignUp={isSignUp}/>
+              <UserTop isSignUp={isSignUp}/>
             )}
           />
           <Route
             exact path={"/user/:id"}
             render={props => (
-              <Detail/>
+              <MyPage/>
             )}
           />
           <Route
             exact path={"/user/edit/:id"}
             render={props => (
-              <UserEdit/>
+              <MyPageEdit/>
             )}
           />
           <Route
             exact path={"/weight_management"}
             render={props => (
-              <WeightManagement/>
+              <WeightIndex/>
             )}
           />
           <Route
             exact path={"/weight_management/new"}
             render={props => (
-              <WeightRegistration/>
+              <WeightNew/>
             )}
           />
           <Route
-            exact path={"/social_field"}
+            exact path={"/posts"}
             render={props => (
-              <SocialNetworkIndex/>
+              <PostIndex/>
             )}
           />
           <Route

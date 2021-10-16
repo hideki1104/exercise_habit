@@ -9,12 +9,15 @@ import { ToolBar } from '../User/ToolBar';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     main: {
-      backgroundColor: "#F5F5F5"
+      backgroundColor: "#F5F5F5",
+      width: "100%",
     },
 
     root: {
       marginLeft: 100,
       textAlign: "center",
+      marginTop: 100,
+      marginBottom: 100,
     },
 
     paper: {

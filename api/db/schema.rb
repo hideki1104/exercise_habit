@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_20_003046) do
+ActiveRecord::Schema.define(version: 2021_10_14_115439) do
 
   create_table "admins", charset: "utf8mb4", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -37,6 +37,14 @@ ActiveRecord::Schema.define(version: 2021_09_20_003046) do
     t.index ["uid", "provider"], name: "index_admins_on_uid_and_provider", unique: true
   end
 
+  create_table "comments", charset: "utf8mb4", force: :cascade do |t|
+    t.string "text"
+    t.bigint "user_id"
+    t.bigint "post_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "genres", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", limit: 50
     t.datetime "created_at", precision: 6, null: false
@@ -51,9 +59,27 @@ ActiveRecord::Schema.define(version: 2021_09_20_003046) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "likes", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "post_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_likes_on_post_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
   create_table "posts", charset: "utf8mb4", force: :cascade do |t|
     t.string "text"
     t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "training_id"
+    t.integer "set_count"
+  end
+
+  create_table "relationships", charset: "utf8mb4", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -89,6 +115,7 @@ ActiveRecord::Schema.define(version: 2021_09_20_003046) do
     t.integer "sex", default: 0
     t.date "birthday"
     t.integer "training_type", default: 0
+    t.string "introduction"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true

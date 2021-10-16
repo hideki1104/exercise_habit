@@ -8,4 +8,6 @@ class Training < ApplicationRecord
   has_many :users
   has_many :histories
   has_many :users, through: :histories
+  has_many :posts
+  has_many :users, through: :posts
 end

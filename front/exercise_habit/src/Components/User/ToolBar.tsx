@@ -18,7 +18,9 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     toolbar: {
-      marginTop: 80,
+      width: 350,
+      position: "fixed",
+      top: 120,
     },
     itemList: {
       listStyleType: "none",
@@ -65,26 +67,11 @@ export const ToolBar: React.FC<ToolBarProps> = () => {
           <li className={classes.item}><Link to="/trainings" className={classes.linkItem}><span className={classes.itemIcon}><DirectionsRunIcon/></span>エクササイズ</Link></li>
           <li className={classes.item}><Link to="/historys" className={classes.linkItem}><span className={classes.itemIcon}><DescriptionIcon/></span>履歴</Link></li>
           <li className={classes.item}><Link to={'/weight_management'} className={classes.linkItem}><span className={classes.itemIcon}><EqualizerIcon/></span>体重管理</Link></li>
-          <li className={classes.item}><Link to={'/social_field'} className={classes.linkItem}><span className={classes.itemIcon}><GroupIcon/></span>交流場</Link></li>
+          <li className={classes.item}><Link to={'/posts'} className={classes.linkItem}><span className={classes.itemIcon}><GroupIcon/></span>交流場</Link></li>
           <li className={classes.item}><span className={classes.itemIcon}><NotificationsIcon/></span>通知</li>
-          <li className={classes.item}><Link to={`/user/${userData ? userData['id'] : null}`} className={classes.linkItem}><span className={classes.itemIcon}><PersonIcon/></span>マイページ</Link></li>
+          <li className={classes.item}><Link to={`/user/${userData ? userData.data.id : null}`} className={classes.linkItem}><span className={classes.itemIcon}><PersonIcon/></span>マイページ</Link></li>
         </ul>
       </CardContent>
-      <CardHeader
-        className={classes.userItem}
-        avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            <PersonIcon/>
-          </Avatar>
-        }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title={userData ? userData.name : ""}
-        subheader={userData ? userData['email'] : ""}
-      />
     </Card>
   );
 }

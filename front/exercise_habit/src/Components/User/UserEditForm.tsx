@@ -14,12 +14,6 @@ import clsx from 'clsx';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    title: {
-      fontSize: 30,
-      fontWeight: 'bold',
-      paddingTop: 30,
-    },
-
     userForm: {
       width: 300,
       marginTop: 30,
@@ -83,9 +77,19 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+type UserData = {
+  id:number
+  name:string
+  email:string
+  height:number
+  sex:number
+  birthday:Date
+  introduction:string
+}
+
 interface UserEditFormProps {
   connectUpdateUserInfo:Function
-  userInfoData:any
+  userInfoData:UserData
   userWeightData:any
 }
 
@@ -100,6 +104,7 @@ export const UserEditForm: React.FC<UserEditFormProps> = ({connectUpdateUserInfo
     weight?: number
     birthday: string
     sex: number
+    introduction: string
   }
 
   const { register, handleSubmit, formState: { errors } } = useForm<UserData>({
@@ -128,9 +133,6 @@ export const UserEditForm: React.FC<UserEditFormProps> = ({connectUpdateUserInfo
 
   return (
     <>
-      <Typography className={classes.title} color="textSecondary" gutterBottom>
-        ユーザー情報編集
-      </Typography>
       <CardContent>
         <form onSubmit={handleSubmit(handleOnSubmit)}>
           <span className={classes.errorMessage}></span><br/>
@@ -215,6 +217,16 @@ export const UserEditForm: React.FC<UserEditFormProps> = ({connectUpdateUserInfo
             />
           </FormControl><br/>
           <span className={classes.errorMessage}>
+          </span><br/>
+
+          <TextField className={classes.userForm} id="introduction" label="自己紹介" variant="outlined"
+          type="text"
+          multiline
+          rows={6}
+          defaultValue={userInfoData.introduction}
+           {...register("introduction", { maxLength: 75 })}/><br/>
+          <span className={classes.errorMessage}>
+            {errors.introduction && errors.introduction.type === "maxLength" && "75文字以内で入力してください"}
           </span><br/>
 
           <Button className={classes.registrationButton} id="login_button" variant="contained" type="submit">編集</Button><br/>

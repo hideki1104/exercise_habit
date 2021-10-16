@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles, withStyles, Theme, useTheme, createStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
-import { ToolBar } from '../User/ToolBar';
 import { WeightGraph } from './WeightGraph';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
@@ -199,46 +196,37 @@ export const WeightManagement: React.FC<WeightManagementProps> = () => {
   )
 
   return (
-    <Grid container className={classes.main}>
-      <Grid item xs={3}>
-        <ToolBar/>
-      </Grid>
-      <Grid item xs={8}>
-        <Card className={classes.root}>
-          <div className={classes.tabRoot}>
-            <AppBar position="static" color="default">
-              <StyledTabs
-                value={selected}
-                onChange={handleChange}
-              >
-                <Tab label="全体表示" className={classes.tab}/>
-                <Tab label="月表示" className={classes.tab} onClick={() => connectGetMonthlyWeightData(selectedMonth)}/>
-              </StyledTabs>
-            </AppBar>
-            <AppBar position="static" color="default">
-              {selected !== 0 ? monthlyTab : ""}
-            </AppBar>
-            <div className={classes.weightRegistrationButton}>
-              <Link to='/weight_management/new'><Button>体重登録へ {'＞＞'}</Button></Link>
-            </div>
-            <Typography className={classes.title} color="textSecondary" gutterBottom>
-              体重管理
-            </Typography>
-            <div>
-              <TabPanel value={selected} index={0} dir={theme.direction}>
-                <p>全体</p>
-                <WeightGraph userWeightData={userWeightData} selectedMonthText={null}/>
-              </TabPanel>
-              <p>{selectedMonthText}</p>
-              <TabPanel value={selected} index={1}>
-                <TabPanel value={selectedMonth} index={selectedMonth} dir={theme.direction}>
-                  <WeightGraph userWeightData={monthlyWeightData} selectedMonthText={selectedMonthText}/>
-                </TabPanel>
-              </TabPanel>
-            </div>
-          </div>
-        </Card>
-      </Grid>
-    </Grid>
+    <div className={classes.tabRoot}>
+      <AppBar position="static" color="default">
+        <StyledTabs
+          value={selected}
+          onChange={handleChange}
+        >
+          <Tab label="全体表示" className={classes.tab}/>
+          <Tab label="月表示" className={classes.tab} onClick={() => connectGetMonthlyWeightData(selectedMonth)}/>
+        </StyledTabs>
+      </AppBar>
+      <AppBar position="static" color="default">
+        {selected !== 0 ? monthlyTab : ""}
+      </AppBar>
+      <div className={classes.weightRegistrationButton}>
+        <Link to='/weight_management/new'><Button>体重登録へ {'＞＞'}</Button></Link>
+      </div>
+      <Typography className={classes.title} color="textSecondary" gutterBottom>
+        体重管理
+      </Typography>
+      <div>
+        <TabPanel value={selected} index={0} dir={theme.direction}>
+          <p>全体</p>
+          <WeightGraph userWeightData={userWeightData} selectedMonthText={null}/>
+        </TabPanel>
+        <p>{selectedMonthText}</p>
+        <TabPanel value={selected} index={1}>
+          <TabPanel value={selectedMonth} index={selectedMonth} dir={theme.direction}>
+            <WeightGraph userWeightData={monthlyWeightData} selectedMonthText={selectedMonthText}/>
+          </TabPanel>
+        </TabPanel>
+      </div>
+    </div>
   );
 }
