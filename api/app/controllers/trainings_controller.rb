@@ -13,6 +13,11 @@ class TrainingsController < ApplicationController
     render json: trainings
   end
 
+  def recommended_trainings
+    trainings = Training.where("trainings.training_type": current_api_user.training_type).limit(3)
+    render json: trainings
+  end
+
   def show
     training = Training.find(params[:id])
     render json: training
