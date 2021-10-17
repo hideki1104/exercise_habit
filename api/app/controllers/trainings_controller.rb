@@ -18,6 +18,11 @@ class TrainingsController < ApplicationController
     render json: trainings
   end
 
+  def recent_trainings
+    trainings = Training.where(id: History.select(:training_id).where("histories.user_id": current_api_user.id )).limit(3)
+    render json: trainings
+  end
+
   def show
     training = Training.find(params[:id])
     render json: training

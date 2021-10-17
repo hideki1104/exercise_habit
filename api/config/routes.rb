@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :genres, only: [:create, :index, :update, :destroy]
   resources :trainings, only: [:create, :index,  :show, :update, :destroy]
   get 'recommended_trainings' => 'trainings#recommended_trainings'
+  get 'recent_trainings' => 'trainings#recent_trainings'
   resources :histories, only: [:create, :index]
   resources :posts, only: [:create, :index] do
     resources :likes, only: [:create, :show, :destroy]
