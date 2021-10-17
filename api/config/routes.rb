@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :weights, only: [:create, :index, :show, :edit, :update]
   resources :genres, only: [:create, :index, :update, :destroy]
   resources :trainings, only: [:create, :index,  :show, :update, :destroy] do
-    resources :training_likes, only: [:create, :index, :destroy]
+    resources :training_likes, only: [:create, :show, :destroy]
   end
   get 'recommended_trainings' => 'trainings#recommended_trainings'
   get 'recent_trainings' => 'trainings#recent_trainings'
