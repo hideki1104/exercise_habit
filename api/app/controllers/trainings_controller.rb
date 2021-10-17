@@ -23,6 +23,11 @@ class TrainingsController < ApplicationController
     render json: trainings
   end
 
+  def favorite_trainings
+    trainings = Training.where(id: TrainingLike.select(:training_id).where("training_likes.user_id": current_api_user.id))
+    render json: trainings
+  end
+
   def show
     training = Training.find(params[:id])
     render json: training
