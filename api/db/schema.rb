@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_14_115439) do
+ActiveRecord::Schema.define(version: 2021_10_17_091547) do
 
   create_table "admins", charset: "utf8mb4", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -82,6 +82,15 @@ ActiveRecord::Schema.define(version: 2021_10_14_115439) do
     t.integer "followed_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "training_likes", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "training_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["training_id"], name: "index_training_likes_on_training_id"
+    t.index ["user_id"], name: "index_training_likes_on_user_id"
   end
 
   create_table "trainings", charset: "utf8mb4", force: :cascade do |t|

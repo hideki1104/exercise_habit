@@ -1,0 +1,2 @@
+class TrainingLike < ApplicationRecord
+end

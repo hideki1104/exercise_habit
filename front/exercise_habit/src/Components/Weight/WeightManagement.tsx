@@ -122,15 +122,15 @@ interface WeightManagementProps {
 
 export const WeightManagement: React.FC<WeightManagementProps> = () => {
   const classes                                   = useStyles();
+  const nowDate                                   = new Date();
+  const nowYear                                   = nowDate.getFullYear();
+  const nowMonth                                  = `0${nowDate.getMonth() + 1}`.slice(-2);
   const [selected, setSelected]                   = useState(0);
-  const [selectedMonth, setSelectedMonth]         = useState('202107')
+  const [selectedMonth, setSelectedMonth]         = useState<string>(nowYear + nowMonth)
   const [selectedMonthText, setSelectedMonthText] = useState("")
   const theme                                     = useTheme();
   const [userWeightData, setUserWeightData]       = useState([]);
   const [monthlyWeightData, setMonthlyWeightData] = useState([]);
-  const nowDate                                   = new Date();
-  const nowYear                                   = nowDate.getFullYear();
-  const nowMonth                                  = `0${nowDate.getMonth()}`.slice(-2);
 
   useEffect(() => {
     const connectGetWeightInfo = async () => {
@@ -165,6 +165,7 @@ export const WeightManagement: React.FC<WeightManagementProps> = () => {
   };
 
   const handleMonthChange = (event: React.ChangeEvent<{}>, nowMonth: string) => {
+    console.log(nowMonth);
     setSelectedMonth(nowMonth);
     connectGetMonthlyWeightData(nowMonth);
   }
@@ -220,7 +221,6 @@ export const WeightManagement: React.FC<WeightManagementProps> = () => {
           <p>全体</p>
           <WeightGraph userWeightData={userWeightData} selectedMonthText={null}/>
         </TabPanel>
-        <p>{selectedMonthText}</p>
         <TabPanel value={selected} index={1}>
           <TabPanel value={selectedMonth} index={selectedMonth} dir={theme.direction}>
             <WeightGraph userWeightData={monthlyWeightData} selectedMonthText={selectedMonthText}/>

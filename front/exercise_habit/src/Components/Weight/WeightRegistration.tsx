@@ -4,10 +4,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useHistory } from 'react-router-dom';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
-import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-import { ToolBar } from '../User/ToolBar';
 import { connectPost } from '../Api/ConnectApi';
 import Button from '@material-ui/core/Button';
 
@@ -100,8 +97,8 @@ export const WeightRegistration: React.FC<WeighRegistrationProps> = () => {
   }
 
   const connectCreateOrUpdateWeight = async (requestData: WeightData) => {
-      await connectPost(`http://localhost:3000/weights`, requestData);
-      history.push('/weight_management');
+    await connectPost(`http://localhost:3000/weights`, requestData);
+    history.push('/weight_management');
   }
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
@@ -118,9 +115,9 @@ export const WeightRegistration: React.FC<WeighRegistrationProps> = () => {
       return;
     }
 
-    const bmi:number               = calcBmi(inputValue, userData.height);
+    const bmi:number               = calcBmi(inputValue, userData.data.height);
     const degreeObesity:string     = decisionDegreeObesity(bmi);
-    const appropriateWeight:number = calcAppropriateWeight(inputValue, userData.height);
+    const appropriateWeight:number = calcAppropriateWeight(inputValue, userData.data.height);
     setBmi(bmi);
     setDegreeObesity(degreeObesity);
     setAppropriateWeight(appropriateWeight);
@@ -162,7 +159,7 @@ export const WeightRegistration: React.FC<WeighRegistrationProps> = () => {
         <Link to='/weight_management'><Button>{'＜＜'}体重管理へ</Button></Link>
       </div>
       <form onSubmit={handleSubmit(handleOnSubmit)}>
-        <div className={classes.heightField}>身長 175<span className={classes.unit}>cm</span></div>
+        <div className={classes.heightField}>身長 {userData.data.height}<span className={classes.unit}>cm</span></div>
         <TextField id="weight" label="体重(kg)" variant="outlined" type="text" {...register("weight", { required: true,
         pattern: {
           value: /[0-9]/,
