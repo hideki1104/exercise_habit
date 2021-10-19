@@ -1,7 +1,6 @@
 class WeightsController < ApplicationController
 
   def create
-    render json: Date.today
     weight = current_api_user.weights.find_or_initialize_by(created_at: Date.today)
 
     if weight.new_record?
